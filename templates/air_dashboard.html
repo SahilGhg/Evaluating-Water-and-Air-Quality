@@ -403,8 +403,7 @@
                 <div class="loc">
                     <div><strong>{{ p.full_name }}</strong></div>
                     <div class="muted">Lat: {{ "%.6f"|format(p.lat) }}, Lon: {{ "%.6f"|format(p.lon) }}</div>
-                    <div>Now: <strong>AQI {{ p.aqi_500_scale }}</strong> <span class="muted">(Class {{ p.aqi_now
-                            }}/5)</span></div>
+                    <div>Now: <strong>AQI Level {{ p.actual_aqi }}</strong></div>
                     <div class="muted">3h→72h: {{ p.forecast }}</div>
                 </div>
                 {% endfor %}

@@ -28,6 +28,12 @@ A **comprehensive environmental monitoring platform** that leverages cutting-edg
 
 ---
 
+## 🌐 Data Sources
+- **Air Pollution Data**: Real-time pollutant concentrations & Model training data provided by [OpenWeather Air Pollution API](https://openweathermap.org/api/air-pollution?collection=environmental).
+- **Water Quality Data**: Baseline station data and standards sourced from the [Maharashtra Pollution Control Board (MPCB)](https://mpcb.gov.in/en/water-quality).
+
+---
+
 ## 🛠️ Technology Stack
 
 **Backend & Integration:**

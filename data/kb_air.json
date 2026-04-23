@@ -50,27 +50,27 @@
     "skin rashes": "While less common, some pollutants can cause skin irritation. If you experience rashes after exposure to poor quality water or air, it's best to consult a doctor.",
 
   "good": {
-    "definition": "An AQI from 0-50 is 'Good'. The air quality is excellent and poses little to no health risk.",
-    "recommendation": "It's a great day for all outdoor activities. Enjoy the fresh air!"
+    "definition": "An AQI level of 1 is 'Good'. The air quality is excellent and poses little to no health risk.",
+    "recommendation": "It's a perfect day for all outdoor activities. Enjoy the fresh air!"
   },
-  "satisfactory": {
-    "definition": "An AQI from 51-100 is 'Satisfactory'. Air quality is acceptable; however, there may be a moderate health concern for a very small number of people unusually sensitive to air pollution.",
+  "fair": {
+    "definition": "An AQI level of 2 is 'Fair'. Air quality is acceptable, though there may be a moderate health concern for a very small number of individuals unusually sensitive to air pollution.",
     "recommendation": "It's generally safe to be outside. Unusually sensitive individuals should consider reducing intense outdoor exertion."
   },
   "moderate": {
-    "definition": "An AQI from 101-200 is 'Moderate'. Members of sensitive groups may experience health effects. The general public is not likely to be affected.",
+    "definition": "An AQI level of 3 is 'Moderate'. Members of sensitive groups may experience health effects. The general public is not likely to be affected.",
     "recommendation": "Sensitive groups (children, elderly, people with respiratory issues) should reduce prolonged or heavy exertion outdoors."
   },
   "poor": {
-    "definition": "An AQI from 201-300 is 'Poor'. Everyone may begin to experience health effects.",
+    "definition": "An AQI level of 4 is 'Poor'. Everyone may begin to experience health effects.",
     "recommendation": "Sensitive groups should avoid all outdoor activity. Everyone else should reduce heavy exertion outside. Consider wearing a mask."
   },
   "very_poor": {
-    "definition": "An AQI from 301-400 is 'Very Poor'. This is a health alert, meaning everyone may experience more serious health effects.",
+    "definition": "An AQI level of 5 is 'Very Poor'. This is a health alert, meaning everyone may experience more serious health effects.",
     "recommendation": "Everyone should avoid prolonged or heavy outdoor exertion. It's recommended to stay indoors as much as possible."
   },
   "severe": {
-    "definition": "An AQI above 400 is 'Severe'. This is a health warning of emergency conditions where the entire population is likely to be affected.",
+    "definition": "AQI levels extreme pollution (equivalent to above 400 on the 500-point scale) are 'Severe'. This is an emergency warning.",
     "recommendation": "This is a health emergency. Everyone should avoid all outdoor activity. Remain indoors, keep windows closed, and run an air purifier if available."
   },
   "air_purifiers": {
@@ -83,7 +83,7 @@
     "recommendation": "For people with asthma, it is crucial to stay indoors on high AQI days, use an air purifier, and always carry an inhaler when stepping out."
   },
   "default_recommendation": "As a general rule, limit your time outdoors on high AQI days and wear an N95 mask if you must go out.",
-  "colors_explanation": "The AQI colors range from Green (Good) to Maroon (Severe), representing increasing health risk. For example, Green (0-50) is safe, while Red (201-300) indicates 'Poor' air quality.",
-  "levels_explanation": "The AQI scale has six levels: Good, Satisfactory, Moderate, Poor, Very Poor, and Severe. Each corresponds to a different level of health concern.",
-  "default_explanation": "The Air Quality Index (AQI) is a scale used to communicate how polluted the air is. I can explain specific values, levels, or colors."
+  "colors_explanation": "The AQI colors range from Green (Good) to Red (Very Poor), representing increasing health risk. Green is Level 1 (Safe), while Red/Maroon indicates Level 5 (Very Poor/Severe).",
+  "levels_explanation": "The AQI scale has five main levels: 1 (Good), 2 (Fair), 3 (Moderate), 4 (Poor), and 5 (Very Poor).",
+  "default_explanation": "The Air Quality Index (AQI) is shown on a 1-to-5 scale on this dashboard. I can explain specific levels (1-5), categories (like 'Fair'), or pollutant details."
 }
