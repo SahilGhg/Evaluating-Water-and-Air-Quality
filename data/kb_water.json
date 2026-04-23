@@ -5,10 +5,10 @@
 
     "how_wqi_calculated": "The WQI is calculated using parameters like pH, Dissolved Oxygen, BOD, COD, nitrates, and Fecal Coliform. These values are compared to standards and combined into a single score representing overall water quality.",
 
-    "water_safe": "A WQI from 63-100 indicates 'Good to Excellent' water quality. The water is clean, safe for drinking and daily use, and poses no significant health risks.",
-    "water_moderate": "A WQI from 50-63 indicates 'Medium to Good' quality. The water is generally safe, though minor treatment or filtration may be recommended for sensitive users.",
-    "water_bad": "A WQI from 38-50 is classified as 'Bad'. The water is polluted and not safe for direct drinking. It may require significant treatment before use.",
-    "water_very bad": "A WQI of 38 or below indicates 'Bad to Very Bad' quality. The water is heavily polluted, unsafe for human consumption, and should be avoided unless thoroughly treated.",
+    "water_safe": "A WQI from 63-100 indicates 'Good' water quality. The water is clean, generally safe for drinking and daily use, and poses no significant health risks.",
+    "water_moderate": "A WQI from 50-62 indicates 'Satisfactory' quality. The water is generally safe, though basic filtration may be recommended for drinking.",
+    "water_bad": "A WQI from 38-49 is classified as 'Poor'. The water is polluted and not safe for direct drinking. It requires treatment before use.",
+    "water_very bad": "A WQI below 38 indicates 'Very Poor' quality. The water is heavily polluted and unsafe for human consumption.",
 
   "ph": {
     "info": "pH measures how acidic or alkaline the water is on a scale of 0 to 14. A pH of 7 is neutral, less than 7 is acidic, and greater than 7 is alkaline. The ideal pH for drinking water is between 6.5 and 8.5.",
@@ -60,23 +60,23 @@
   "low_ph": "Water with a low pH is acidic. It can have a sour or metallic taste and may leach metals from plumbing pipes. It's best to use a neutralizer or a filter that corrects the pH balance.",
 
   "good": {
-    "definition": "A Water Quality Index (WQI) score of 80-100 is considered 'Good'.",
-    "recommendation": "The water quality is excellent and is considered safe for all uses, including drinking."
+    "definition": "A Water Quality Index (WQI) score of 63-100 is considered 'Good'.",
+    "recommendation": "The water quality is excellent and safe for all uses, including drinking."
   },
   "satisfactory": {
-    "definition": "A WQI score of 60-79 is considered 'Satisfactory'.",
-    "recommendation": "The water is generally safe for consumption, but sensitive individuals might consider using a basic filter for taste."
-  },
-  "moderate": {
-    "definition": "A WQI score of 40-59 is 'Moderate', indicating some level of pollution.",
-    "recommendation": "This water is not recommended for drinking without proper treatment. Boiling or using a multi-stage water purifier is advised."
+    "definition": "A WQI score of 50-62 is considered 'Satisfactory'.",
+    "recommendation": "The water is generally safe, but using a basic filter for drinking is recommended for taste and safety."
   },
   "poor": {
-    "definition": "A WQI score of 20-39 is 'Poor', indicating significant contamination.",
-    "recommendation": "This water is not safe for drinking. Use a reliable purifier like an RO system and avoid direct consumption."
+    "definition": "A WQI score of 38-49 is 'Poor', indicating significant contamination.",
+    "recommendation": "This water is not safe for drinking without proper treatment. Boiling or using a multi-stage water purifier (RO) is advised."
   },
   "very_poor": {
-    "definition": "A WQI score below 20 is 'Very Poor' and is considered heavily polluted.",
+    "definition": "A WQI score below 38 is 'Very Poor' and is considered heavily polluted.",
+    "recommendation": "This water is unsafe for drinking. Use a reliable purifier like an RO system and avoid direct consumption."
+  },
+  "hazard": {
+    "definition": "Extremely low WQI scores indicate hazardous pollution levels.",
     "recommendation": "Do not use this water for drinking, cooking, or even bathing. Contact your local water authority."
   },
   "fecal_coliform": {

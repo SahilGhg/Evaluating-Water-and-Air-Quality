@@ -157,9 +157,8 @@ def get_aqi_response_string(city_name):
     """Formats the dictionary returned by get_aqi_for_city into a human-readable string."""
     aqi_data = get_aqi_for_city(city_name, LOCATIONS_CHATBOT, aqi_model)
     if isinstance(aqi_data, dict):
-        return (f"The current predicted AQI for **{aqi_data['city']}** is **{int(aqi_data['aqi_500_scale'])}** "
-                f"on the official 0-500 scale (Level **{aqi_data['aqi_1_to_5_scale']}** on the dashboard), "
-                f"which is considered **'{aqi_data['category']}'**.")
+        return (f"The current AQI for **{aqi_data['city']}** is Level **{aqi_data['actual_aqi']}** "
+                f"(on a 1-to-5 scale), which is considered **'{aqi_data['category']}'**.")
     else:
         return aqi_data
         
@@ -631,6 +630,7 @@ def get_chatbot_response(user_input, predicted_intent, extracted_entities, score
                         results.append({
                             'city': matched_city,
                             'aqi_500': aqi_data['aqi_500_scale'],
+                            'actual_aqi': aqi_data['actual_aqi'],
                             'wqi': wqi_score,
                             'score': livability_score
                         })
@@ -651,9 +651,9 @@ def get_chatbot_response(user_input, predicted_intent, extracted_entities, score
             )
 
             for res in results:
-                response_text += f"- **{res['city']}**: Livability Score: {res['score']:.0f}/100 <i>(AQI: {res['aqi_500']:.0f}, WQI: {res['wqi']:.0f})</i><br>"
+                response_text += f"- **{res['city']}**: Livability Score: {res['score']:.0f}/100 <i>(AQI Level: {res['actual_aqi']}, WQI: {res['wqi']:.0f})</i><br>"
             
-            response_text += "<br><span style='font-size: 0.9em; color: gray;'>*Note: For the overall Livability Score and WQI, higher is better. For standard AQI, lower is better.</span>"
+            response_text += "<br><span style='font-size: 0.6em; color: gray;'>*Note: For the overall Livability Score and WQI, higher is better. For standard AQI, lower is better.</span>"
             return {"response": response_text, "session_data": session_data}
 
     return {"response": response_text, "session_data": session_data}

@@ -312,17 +312,12 @@
                     Representative values are shown below. You can edit them to get a new prediction.
                 </p>
                 <div class="form-grid" title="These are representative values. You can change them and predict.">
-                    <div class="form-group"><label>pH</label><input type="number" step="any" id="ph" required></div>
-                    <div class="form-group"><label>Dissolved O₂ (mg/L)</label><input type="number" step="any"
-                            id="dissolvedoxygen" required></div>
-                    <div class="form-group"><label>BOD (mg/L)</label><input type="number" step="any" id="bod" required>
-                    </div>
-                    <div class="form-group"><label>COD (mg/L)</label><input type="number" step="any" id="cod" required>
-                    </div>
-                    <div class="form-group"><label>Nitrate (mg/L)</label><input type="number" step="any" id="nitrate"
-                            required></div>
-                    <div class="form-group"><label>Fecal Coliform (MPN/100 ml)</label><input type="number" step="1"
-                            id="fecalcoliform" required></div>
+                    <div class="form-group"><label>pH</label><input type="number" step="any" id="ph" min="0" max="14" required></div>
+                    <div class="form-group"><label>Dissolved O₂ (mg/L)</label><input type="number" step="any" id="dissolvedoxygen" min="0" required></div>
+                    <div class="form-group"><label>BOD (mg/L)</label><input type="number" step="any" id="bod" min="0" required></div>
+                    <div class="form-group"><label>COD (mg/L)</label><input type="number" step="any" id="cod" min="0" required></div>
+                    <div class="form-group"><label>Nitrate (mg/L)</label><input type="number" step="any" id="nitrate" min="0" required></div>
+                    <div class="form-group"><label>Fecal Coliform (MPN/100 ml)</label><input type="number" step="1" id="fecalcoliform" min="0" required></div>
                 </div>
                 <button type="submit" class="button-link" style="margin-top: 1.5rem;">Predict WQI for these
                     values</button>
@@ -512,7 +507,7 @@
                 return;
             }
 
-            locationNameEl.innerHTML = `${data.full_name} &nbsp;&mdash;&nbsp; <b>AQI ${data.aqi_500_scale}</b> <span style="font-size: 0.8rem; opacity: 0.7;">(Class ${data.aqi_now}/5)</span>`;
+            locationNameEl.innerHTML = `${data.full_name} &nbsp;&mdash;&nbsp; <b>AQI Level ${data.actual_aqi}</b>`;
             aqiColorDotEl.style.backgroundColor = aqiColor(data.aqi_now);
 
             // Highlight map pin
@@ -625,12 +620,23 @@
         }
 
         function updateWaterCardResult(result) {
+            const scoreEl = document.getElementById('result-wqi-score');
+            const classEl = document.getElementById('result-classification');
+            
             if (result.ok) {
-                document.getElementById('result-wqi-score').textContent = result.wqi_score;
-                document.getElementById('result-classification').textContent = result.classification;
+                const score = parseFloat(result.wqi_score);
+                scoreEl.textContent = score.toFixed(2);
+                scoreEl.style.color = wqiColor(score);
+                classEl.textContent = result.classification;
+                
+                // Update SHAP chart for this specific prediction!
+                if (result.shap_explanation) {
+                    drawWqiShapChart(result.shap_explanation);
+                }
             } else {
-                document.getElementById('result-wqi-score').textContent = "Error";
-                document.getElementById('result-classification').textContent = result.error || "Prediction failed.";
+                scoreEl.textContent = "Error";
+                scoreEl.style.color = "var(--very-unhealthy)";
+                classEl.textContent = result.error || "Prediction failed.";
                 alert(result.error || "Prediction failed.");
             }
         }
@@ -681,6 +687,14 @@
 
             // Function to trigger a prediction
             const predictWQI = async () => {
+                const submitBtn = document.querySelector('#wqi-form button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Analyzing water parameters...";
+                submitBtn.style.opacity = "0.7";
+
                 const data = {
                     location_id: waterLocationSelect.value,
                     month: new Date().getMonth() + 1,
@@ -691,13 +705,23 @@
                     nitrate: document.getElementById('nitrate').value,
                     fecalcoliform: document.getElementById('fecalcoliform').value
                 };
-                const response = await fetch('/api/predict_wqi', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                const result = await response.json();
-                updateWaterCardResult(result);
+                
+                try {
+                    const response = await fetch('/api/predict_wqi', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    const result = await response.json();
+                    updateWaterCardResult(result);
+                } catch (err) {
+                    console.error("Prediction error:", err);
+                    alert("Failed to connect to the prediction service.");
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.opacity = "1";
+                }
             };
 
             // Handle location changes

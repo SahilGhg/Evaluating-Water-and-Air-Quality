@@ -62,11 +62,15 @@ def api_predict_wqi():
         
         wqi_classification = get_wqi_category_and_remark(predicted_wqi_score)
         
+        # --- NEW: Get SHAP explanation for the user's specific input ---
+        shap_explanation = get_wqi_shap_explanation(input_scaled)
+        
         return jsonify({
             "ok": True,
             "wqi_score": f"{predicted_wqi_score:.2f}",
             "classification": wqi_classification["classification"],
-            "remark": wqi_classification["remark"]
+            "remark": wqi_classification["remark"],
+            "shap_explanation": shap_explanation
         })
 
     except Exception as e:

@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}AI Air & Water Monitoring{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}">
 
     {% block page_specific_css %}{% endblock %}
 
@@ -211,6 +209,15 @@
             border-bottom-left-radius: 6px;
         }
 
+        /* Remove extra space from markdown paragraphs */
+        .message p {
+            margin: 0;
+        }
+
+        .message p + p {
+            margin-top: 0.5rem;
+        }
+
         /* ── Global Navigation Bar ── */
         .global-nav {
             display: flex;
@@ -301,8 +308,6 @@
     {% if request.endpoint != 'pages.landing_page' %}
     <nav class="global-nav">
         <a href="/" class="nav-brand">
-            <!-- <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
-            EnviroAI -->
         </a>
         <div class="nav-links">
             <a href="/dashboard" class="nav-link {{ 'active' if request.endpoint == 'pages.dashboard' }}">
